@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <title>Chatbot | PY</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="{{ url_for('processar_chat') }}" aria-label="Chatbot PY - início">
+            <span class="brand-mark" aria-hidden="true">PY</span>
+            <span>Chatbot <span class="brand-divider">/</span> PY</span>
+        </a>
+        {% if tempo_agora %}
+            <time class="current-time">{{ tempo_agora }}</time>
+        {% endif %}
+    </header>
+
+    <main class="chat-layout">
+        <section class="chat-panel" aria-labelledby="page-title">
+            <div class="panel-heading">
+                <p class="eyebrow">ASSISTENTE VIRTUAL</p>
+                <h1 id="page-title">Conversa <span>sem limites.</span></h1>
+                <p class="intro-copy">Faça uma pergunta. Estou pronto para ajudar.</p>
+            </div>
+
+            <div class="conversation" id="resposta_chatbot" aria-live="polite" aria-relevant="additions text">
+                {% if resposta_final2 %}
+                    <article class="message message-user">
+                        <p class="message-label">VOCÊ</p>
+                        <p class="message-content">{{ pergunta_usuario_html }}</p>
+                    </article>
+                    <article class="message message-assistant">
+                        <p class="message-label">CHATBOT</p>
+                        <p class="message-content">{{ resposta_final2 }}</p>
+                    </article>
+                {% else %}
+                    <div class="empty-state">
+                        <span class="empty-mark" aria-hidden="true">✳</span>
+                        <p>Sua conversa começa aqui.</p>
+                    </div>
+                {% endif %}
+            </div>
+
+            <form action="/chat/" method="post" class="chat-input-form">
+                <label class="sr-only" for="pergunta">Sua mensagem</label>
+                <input
+                    id="pergunta"
+                    type="text"
+                    name="pergunta"
+                    placeholder="Digite sua mensagem..."
+                    autocomplete="off"
+                    required
+                >
+                <button type="submit">
+                    <span>Enviar</span>
+                    <span class="send-arrow" aria-hidden="true">↗</span>
+                </button>
+            </form>
+            <p class="input-hint">Pressione enviar para iniciar sua conversa</p>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <title>Chatbot | PY</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</head>
+<body>
+    <main
+        class="intro-overlay"
+        id="video-intro"
+        data-redirect-url="{{ url_for('processar_chat') }}"
+        aria-label="Introdução do Chatbot PY"
+    >
+        <video class="intro-video" id="intro-video" autoplay muted playsinline preload="auto" aria-hidden="true">
+            <source src="{{ url_for('static', filename='media/Animation_Start.mp4') }}" type="video/mp4">
+        </video>
+        <button class="intro-skip" id="intro-fallback" type="button" hidden></button>
+        <p class="sr-only" id="intro-status" role="status">Carregando o Chatbot PY...</p>
+    </main>
+</body>
+</html>
